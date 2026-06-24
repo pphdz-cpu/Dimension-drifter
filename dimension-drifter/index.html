@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dimension Drifter</title>
+  <title>Dimension Drifter: The Magic Labyrinth</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="game">
     <header class="game-header">
       <h1 class="game-title">Dimension Drifter</h1>
-      <p class="game-subtitle">Shift between planes. Master the runes.</p>
+      <p class="game-tagline">The Magic Labyrinth</p>
+      <p class="game-subtitle">Guide your marshmallow blob through the candy maze. Toggle reality with the runes.</p>
     </header>
 
     <section class="board-section" aria-label="Game board">
@@ -120,16 +121,19 @@
 
     <section class="runes-section" aria-label="Magic runes">
       <h2 class="runes-heading">Magic Runes</h2>
+      <p class="runes-hint">Toggle reality to solve the labyrinth.</p>
       <div class="runes-panel">
-        <div class="rune-slot" id="rune-alpha" data-rune="alpha" aria-label="Alpha rune placeholder">
-          <span class="rune-glyph" aria-hidden="true">ᚠ</span>
-          <span class="rune-label">Alpha Rune</span>
-          <span class="rune-status">Unbound</span>
+        <div class="rune-slot" id="rune-matter" data-rune="matter" aria-label="State of Matter rune placeholder">
+          <span class="rune-glyph" aria-hidden="true">🍫</span>
+          <span class="rune-label">State of Matter</span>
+          <span class="rune-effect">River → Bridge</span>
+          <span class="rune-status">Inactive</span>
         </div>
-        <div class="rune-slot" id="rune-omega" data-rune="omega" aria-label="Omega rune placeholder">
-          <span class="rune-glyph" aria-hidden="true">ᚦ</span>
-          <span class="rune-label">Omega Rune</span>
-          <span class="rune-status">Unbound</span>
+        <div class="rune-slot" id="rune-behavior" data-rune="behavior" aria-label="State of Behavior rune placeholder">
+          <span class="rune-glyph" aria-hidden="true">🍭</span>
+          <span class="rune-label">State of Behavior</span>
+          <span class="rune-effect">Guards → Tiny candies</span>
+          <span class="rune-status">Inactive</span>
         </div>
       </div>
     </section>
