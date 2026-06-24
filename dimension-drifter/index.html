@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimension Drifter</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="game">
+    <header class="game-header">
+      <h1 class="game-title">Dimension Drifter</h1>
+      <p class="game-subtitle">Shift between planes. Master the runes.</p>
+    </header>
+
+    <section class="board-section" aria-label="Game board">
+      <div class="board" id="board" role="grid" aria-label="10 by 10 game board">
+        <div class="cell" role="gridcell" data-row="0" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="0" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="1" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="2" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="3" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="4" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="5" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="6" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="7" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="8" data-col="9"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="0"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="1"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="2"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="3"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="4"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="5"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="6"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="7"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="8"></div>
+        <div class="cell" role="gridcell" data-row="9" data-col="9"></div>
+      </div>
+    </section>
+
+    <section class="runes-section" aria-label="Magic runes">
+      <h2 class="runes-heading">Magic Runes</h2>
+      <div class="runes-panel">
+        <div class="rune-slot" id="rune-alpha" data-rune="alpha" aria-label="Alpha rune placeholder">
+          <span class="rune-glyph" aria-hidden="true">ᚠ</span>
+          <span class="rune-label">Alpha Rune</span>
+          <span class="rune-status">Unbound</span>
+        </div>
+        <div class="rune-slot" id="rune-omega" data-rune="omega" aria-label="Omega rune placeholder">
+          <span class="rune-glyph" aria-hidden="true">ᚦ</span>
+          <span class="rune-label">Omega Rune</span>
+          <span class="rune-status">Unbound</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

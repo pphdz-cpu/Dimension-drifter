@@ -1,0 +1,198 @@
+/* Dimension Drifter — board & rune UI */
+
+:root {
+  --bg-deep: #0a0b14;
+  --bg-mid: #12152a;
+  --board-frame: #2a3050;
+  --cell-light: #1a1f38;
+  --cell-dark: #14182c;
+  --cell-border: #2e3658;
+  --glow-cyan: #4ecdc4;
+  --glow-violet: #9b7bff;
+  --text-primary: #e8eaf6;
+  --text-muted: #8b93b8;
+  --rune-alpha: #4ecdc4;
+  --rune-omega: #c77dff;
+  --board-size: min(72vmin, 560px);
+  --cell-gap: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #1a2040 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, #0f1228 0%, transparent 60%),
+    var(--bg-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 640px;
+}
+
+/* Header */
+
+.game-header {
+  text-align: center;
+}
+
+.game-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--glow-cyan), var(--glow-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.game-subtitle {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* 10×10 board */
+
+.board-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: var(--cell-gap);
+  width: var(--board-size);
+  height: var(--board-size);
+  padding: 10px;
+  background: var(--bg-mid);
+  border: 2px solid var(--board-frame);
+  border-radius: 8px;
+  box-shadow:
+    0 0 24px rgba(78, 205, 196, 0.08),
+    0 0 48px rgba(155, 123, 255, 0.06),
+    inset 0 0 32px rgba(0, 0, 0, 0.4);
+}
+
+.cell {
+  aspect-ratio: 1;
+  background: var(--cell-light);
+  border: 1px solid var(--cell-border);
+  border-radius: 3px;
+  transition: background 0.15s ease;
+}
+
+/* Checkerboard pattern across the 10-column grid */
+.cell:nth-child(20n + 1),
+.cell:nth-child(20n + 3),
+.cell:nth-child(20n + 5),
+.cell:nth-child(20n + 7),
+.cell:nth-child(20n + 9),
+.cell:nth-child(20n + 12),
+.cell:nth-child(20n + 14),
+.cell:nth-child(20n + 16),
+.cell:nth-child(20n + 18),
+.cell:nth-child(20n + 20) {
+  background: var(--cell-dark);
+}
+
+/* Magic runes panel */
+
+.runes-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.runes-heading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.runes-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  max-width: var(--board-size);
+}
+
+.rune-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1.25rem 1rem;
+  background: var(--bg-mid);
+  border: 2px dashed var(--board-frame);
+  border-radius: 8px;
+  min-height: 110px;
+  cursor: default;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rune-slot[data-rune="alpha"] {
+  border-color: color-mix(in srgb, var(--rune-alpha) 40%, var(--board-frame));
+}
+
+.rune-slot[data-rune="omega"] {
+  border-color: color-mix(in srgb, var(--rune-omega) 40%, var(--board-frame));
+}
+
+.rune-glyph {
+  font-size: 2rem;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.rune-slot[data-rune="alpha"] .rune-glyph {
+  color: var(--rune-alpha);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--rune-alpha) 50%, transparent);
+}
+
+.rune-slot[data-rune="omega"] .rune-glyph {
+  color: var(--rune-omega);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--rune-omega) 50%, transparent);
+}
+
+.rune-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.rune-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
