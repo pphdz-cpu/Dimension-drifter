@@ -21,19 +21,25 @@ const TILE_CLASS = {
 };
 
 /**
- * Level 1 — player starts at (1, 1), exit at (8, 8).
- * River blocks the mid-map corridor; guard blocks the exit approach.
+ * Level 1 — three walled rooms with strict choke points.
+ * Player starts at (1, 1), exit at (8, 8).
+ *
+ * Room 1 (rows 1–3): start area — only exit south through (4, 4) river.
+ * Room 2 (rows 5–6): middle chamber — only exit south through (7, 5) guard.
+ * Room 3 (row 8): exit chamber — star candies at (8, 8).
+ *
+ * Reaching the exit requires stepping on both tile 2 and tile 3.
  */
 export const LEVEL_1 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-  [1, 0, 1, 0, 1, 0, 1, 1, 0, 1],
-  [1, 0, 0, 0, 0, 2, 2, 2, 0, 1],
-  [1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 3, 0, 1],
-  [1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 0, 4, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 1], // Room 1
+  [1, 0, 1, 0, 0, 0, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+  [1, 1, 1, 1, 2, 1, 1, 1, 1, 1], // Wall — sole gap: river (4, 4)
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // Room 2
+  [1, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+  [1, 1, 1, 1, 1, 3, 1, 1, 1, 1], // Wall — sole gap: guard (7, 5)
+  [1, 0, 0, 0, 0, 0, 0, 0, 4, 1], // Room 3 — exit (8, 8)
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
