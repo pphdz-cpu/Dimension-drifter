@@ -7,6 +7,11 @@ export const TILE = {
   EXIT: 4,
 };
 
+/** @param {number} tile */
+export function isPassable(tile) {
+  return tile === TILE.FLOOR || tile === TILE.EXIT;
+}
+
 const TILE_CLASS = {
   [TILE.FLOOR]: "tile-floor",
   [TILE.WALL]: "tile-wall",
