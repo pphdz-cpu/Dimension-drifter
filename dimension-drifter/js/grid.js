@@ -7,9 +7,18 @@ export const TILE = {
   EXIT: 4,
 };
 
-/** @param {number} tile */
-export function isPassable(tile) {
-  return tile === TILE.FLOOR || tile === TILE.EXIT;
+/** @param {number} tile @param {string | null} activeRune */
+export function isPassable(tile, activeRune = null) {
+  if (tile === TILE.FLOOR || tile === TILE.EXIT) {
+    return true;
+  }
+  if (tile === TILE.RIVER && activeRune === "melt") {
+    return true;
+  }
+  if (tile === TILE.GUARD && activeRune === "tiny") {
+    return true;
+  }
+  return false;
 }
 
 const TILE_CLASS = {
@@ -48,8 +57,14 @@ export const LEVEL_1 = [
  * @param {HTMLElement} boardElement
  * @param {number[][]} mapData
  * @param {{ row: number, col: number } | null} playerPos
+ * @param {string | null} activeRune
  */
-export function renderBoard(boardElement, mapData, playerPos = null) {
+export function renderBoard(
+  boardElement,
+  mapData,
+  playerPos = null,
+  activeRune = null
+) {
   boardElement.replaceChildren();
   boardElement.setAttribute("role", "grid");
 
@@ -76,17 +91,36 @@ export function renderBoard(boardElement, mapData, playerPos = null) {
         player.textContent = "😊";
         cell.appendChild(player);
       } else if (tile === TILE.GUARD) {
-        const guard = document.createElement("span");
-        guard.className = "entity guard";
-        guard.setAttribute("aria-hidden", "true");
-        guard.textContent = "🍭";
-        cell.appendChild(guard);
+        if (activeRune === "tiny") {
+          cell.classList.add("tile-guard-tiny");
+          const tinyGuard = document.createElement("span");
+          tinyGuard.className = "entity guard-tiny";
+          tinyGuard.setAttribute("aria-hidden", "true");
+          tinyGuard.textContent = "🍬";
+          cell.appendChild(tinyGuard);
+        } else {
+          const guard = document.createElement("span");
+          guard.className = "entity guard";
+          guard.setAttribute("aria-hidden", "true");
+          guard.textContent = "🍭";
+          cell.appendChild(guard);
+        }
       } else if (tile === TILE.RIVER) {
-        const river = document.createElement("span");
-        river.className = "entity river";
-        river.setAttribute("aria-hidden", "true");
-        river.textContent = "🍫";
-        cell.appendChild(river);
+        if (activeRune === "melt") {
+          cell.classList.remove("tile-river");
+          cell.classList.add("tile-bridge");
+          const bridge = document.createElement("span");
+          bridge.className = "entity bridge";
+          bridge.setAttribute("aria-label", "Candy bridge");
+          bridge.textContent = "🌉";
+          cell.appendChild(bridge);
+        } else {
+          const river = document.createElement("span");
+          river.className = "entity river";
+          river.setAttribute("aria-hidden", "true");
+          river.textContent = "🍫";
+          cell.appendChild(river);
+        }
       } else if (tile === TILE.EXIT) {
         const exit = document.createElement("span");
         exit.className = "entity exit";

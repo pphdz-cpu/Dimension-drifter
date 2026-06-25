@@ -36,14 +36,14 @@ export function tryMovePlayer(gameState, boardElement, dRow, dCol) {
   }
 
   const targetTile = level[newRow][newCol];
-  if (!isPassable(targetTile)) {
+  if (!isPassable(targetTile, gameState.activeRune)) {
     return;
   }
 
   gameState.player.row = newRow;
   gameState.player.col = newCol;
 
-  renderBoard(boardElement, level, gameState.player);
+  renderBoard(boardElement, level, gameState.player, gameState.activeRune);
 
   if (targetTile === TILE.EXIT) {
     gameState.won = true;

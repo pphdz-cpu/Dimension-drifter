@@ -22,18 +22,32 @@
       <h2 class="runes-heading">Magic Runes</h2>
       <p class="runes-hint">Toggle reality to solve the labyrinth.</p>
       <div class="runes-panel">
-        <div class="rune-slot" id="rune-matter" data-rune="matter" aria-label="State of Matter rune placeholder">
+        <button
+          type="button"
+          class="rune-slot"
+          id="rune-melt"
+          data-rune="melt"
+          aria-pressed="false"
+          aria-label="Melt Rune — turn chocolate river into a candy bridge"
+        >
           <span class="rune-glyph" aria-hidden="true">🍫</span>
-          <span class="rune-label">State of Matter</span>
-          <span class="rune-effect">River → Bridge</span>
+          <span class="rune-label">Melt Rune</span>
+          <span class="rune-effect">River → Candy Bridge</span>
           <span class="rune-status">Inactive</span>
-        </div>
-        <div class="rune-slot" id="rune-behavior" data-rune="behavior" aria-label="State of Behavior rune placeholder">
+        </button>
+        <button
+          type="button"
+          class="rune-slot"
+          id="rune-tiny"
+          data-rune="tiny"
+          aria-pressed="false"
+          aria-label="Tiny Rune — shrink lollipop guards into passable candies"
+        >
           <span class="rune-glyph" aria-hidden="true">🍭</span>
-          <span class="rune-label">State of Behavior</span>
+          <span class="rune-label">Tiny Rune</span>
           <span class="rune-effect">Guards → Tiny candies</span>
           <span class="rune-status">Inactive</span>
-        </div>
+        </button>
       </div>
     </section>
   </main>
