@@ -68,14 +68,15 @@ export function renderBoard(
         const player = document.createElement("span");
         player.className = "entity player";
         player.setAttribute("aria-label", "Marshmallow player");
-        player.textContent = "😊";
         cell.appendChild(player);
       } else {
         const entity = getTileEntity(tile, activeRune);
         if (entity) {
           const span = document.createElement("span");
           span.className = entity.className;
-          span.textContent = entity.text;
+          if (entity.text) {
+            span.textContent = entity.text;
+          }
           if (entity.label) {
             span.setAttribute("aria-label", entity.label);
           }

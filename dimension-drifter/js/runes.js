@@ -44,14 +44,14 @@ export function getTileEntity(tile, activeRune) {
     if (activeRune === RUNES.MELT) {
       return { className: "entity bridge", text: "🌉", label: "Candy bridge" };
     }
-    return { className: "entity river", text: "🍫", hidden: true };
+    return null;
   }
 
   if (tile === TILE.GUARD) {
     if (activeRune === RUNES.TINY) {
       return { className: "entity guard-tiny", text: "🍬", hidden: true };
     }
-    return { className: "entity guard", text: "🍭", hidden: true };
+    return { className: "entity guard", label: "Lollipop guard" };
   }
 
   if (tile === TILE.EXIT) {
