@@ -1,3 +1,5 @@
+import { getTileClass, getTileEntity } from "./runes.js";
+
 /** Tile types for Dimension Drifter: The Magic Labyrinth */
 export const TILE = {
   FLOOR: 0,
@@ -5,28 +7,6 @@ export const TILE = {
   RIVER: 2,
   GUARD: 3,
   EXIT: 4,
-};
-
-/** @param {number} tile @param {string | null} activeRune */
-export function isPassable(tile, activeRune = null) {
-  if (tile === TILE.FLOOR || tile === TILE.EXIT) {
-    return true;
-  }
-  if (tile === TILE.RIVER && activeRune === "melt") {
-    return true;
-  }
-  if (tile === TILE.GUARD && activeRune === "tiny") {
-    return true;
-  }
-  return false;
-}
-
-const TILE_CLASS = {
-  [TILE.FLOOR]: "tile-floor",
-  [TILE.WALL]: "tile-wall",
-  [TILE.RIVER]: "tile-river",
-  [TILE.GUARD]: "tile-guard",
-  [TILE.EXIT]: "tile-exit",
 };
 
 /**
@@ -77,7 +57,7 @@ export function renderBoard(
       const isPlayerHere =
         playerPos && playerPos.row === row && playerPos.col === col;
 
-      cell.className = `cell ${TILE_CLASS[tile] ?? "tile-floor"}`;
+      cell.className = `cell ${getTileClass(tile, activeRune)}`;
       cell.setAttribute("role", "gridcell");
       cell.dataset.row = String(row);
       cell.dataset.col = String(col);
@@ -90,43 +70,20 @@ export function renderBoard(
         player.setAttribute("aria-label", "Marshmallow player");
         player.textContent = "😊";
         cell.appendChild(player);
-      } else if (tile === TILE.GUARD) {
-        if (activeRune === "tiny") {
-          cell.classList.add("tile-guard-tiny");
-          const tinyGuard = document.createElement("span");
-          tinyGuard.className = "entity guard-tiny";
-          tinyGuard.setAttribute("aria-hidden", "true");
-          tinyGuard.textContent = "🍬";
-          cell.appendChild(tinyGuard);
-        } else {
-          const guard = document.createElement("span");
-          guard.className = "entity guard";
-          guard.setAttribute("aria-hidden", "true");
-          guard.textContent = "🍭";
-          cell.appendChild(guard);
+      } else {
+        const entity = getTileEntity(tile, activeRune);
+        if (entity) {
+          const span = document.createElement("span");
+          span.className = entity.className;
+          span.textContent = entity.text;
+          if (entity.label) {
+            span.setAttribute("aria-label", entity.label);
+          }
+          if (entity.hidden) {
+            span.setAttribute("aria-hidden", "true");
+          }
+          cell.appendChild(span);
         }
-      } else if (tile === TILE.RIVER) {
-        if (activeRune === "melt") {
-          cell.classList.remove("tile-river");
-          cell.classList.add("tile-bridge");
-          const bridge = document.createElement("span");
-          bridge.className = "entity bridge";
-          bridge.setAttribute("aria-label", "Candy bridge");
-          bridge.textContent = "🌉";
-          cell.appendChild(bridge);
-        } else {
-          const river = document.createElement("span");
-          river.className = "entity river";
-          river.setAttribute("aria-hidden", "true");
-          river.textContent = "🍫";
-          cell.appendChild(river);
-        }
-      } else if (tile === TILE.EXIT) {
-        const exit = document.createElement("span");
-        exit.className = "entity exit";
-        exit.setAttribute("aria-label", "Star candy exit");
-        exit.textContent = "⭐";
-        cell.appendChild(exit);
       }
 
       boardElement.appendChild(cell);
