@@ -1,22 +1,33 @@
-/* Dimension Drifter: The Magic Labyrinth — board & rune UI */
+/* Dimension Drifter — Candy Kingdom aesthetic */
 
 :root {
-  --bg-deep: #1a0f1e;
-  --bg-mid: #2a1830;
-  --board-frame: #5c3d4a;
-  --cell-light: #f5e6d8;
-  --cell-dark: #e8d4c4;
-  --cell-border: #c9a88a;
-  --glow-pink: #ff8ec7;
+  --sky-top: #f8d4f0;
+  --sky-bottom: #d4e8ff;
+  --panel-pink: #fce8f3;
+  --board-frame: #e878a8;
+  --board-inner: #fff8e8;
+  --floor-light: #fff6c8;
+  --floor-dark: #ffeaa0;
+  --floor-border: #f0d080;
+  --candy-pink: #ff7eb8;
+  --candy-purple: #c77dff;
+  --candy-red: #ff4d6d;
+  --chocolate-dark: #3d2010;
+  --chocolate-mid: #6b3a1a;
+  --chocolate-gloss: #a06830;
+  --bridge-blue: #7ec8ff;
+  --bridge-light: #b8e4ff;
+  --marshmallow: #ffffff;
+  --marshmallow-shadow: #e8d8f0;
+  --stone-dark: #4a4a58;
+  --stone-light: #7a7a8a;
+  --stone-highlight: #9a9aaa;
+  --text-primary: #4a3058;
+  --text-muted: #7a6088;
   --glow-gold: #ffd166;
-  --text-primary: #fff5f0;
-  --text-muted: #c4a8b0;
-  --rune-matter: #6b3e2e;
-  --rune-matter-glow: #c47a4a;
-  --rune-behavior: #e84a8a;
-  --rune-behavior-glow: #ff8ec7;
+  --glow-white: rgba(255, 255, 255, 0.95);
   --board-size: min(72vmin, 560px);
-  --cell-gap: 2px;
+  --cell-gap: 3px;
 }
 
 *,
@@ -29,12 +40,9 @@
 
 body {
   min-height: 100vh;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
   color: var(--text-primary);
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, #3d1f4a 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, #2a1028 0%, transparent 60%),
-    var(--bg-deep);
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +53,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
   width: 100%;
   max-width: 640px;
 }
@@ -58,25 +66,23 @@ body {
 
 .game-title {
   font-size: clamp(1.5rem, 4.5vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  background: linear-gradient(135deg, var(--glow-gold), var(--glow-pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--candy-purple);
+  text-shadow: 0 2px 0 #fff, 0 3px 8px rgba(199, 125, 255, 0.35);
 }
 
 .game-tagline {
-  margin-top: 0.25rem;
-  font-size: clamp(1rem, 3vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  margin-top: 0.2rem;
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--glow-pink);
+  color: var(--candy-pink);
 }
 
 .game-subtitle {
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
   max-width: 28rem;
   margin-inline: auto;
   font-size: 0.9rem;
@@ -85,15 +91,15 @@ body {
 }
 
 .level-label {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--glow-gold);
+  color: var(--candy-purple);
 }
 
-/* 10×10 maze board */
+/* Board */
 
 .board-section {
   width: 100%;
@@ -108,14 +114,14 @@ body {
   gap: var(--cell-gap);
   width: var(--board-size);
   height: var(--board-size);
-  padding: 10px;
-  background: var(--bg-mid);
-  border: 3px solid var(--board-frame);
-  border-radius: 12px;
+  padding: 12px;
+  background: var(--board-inner);
+  border: 4px solid var(--board-frame);
+  border-radius: 18px;
   box-shadow:
-    0 0 24px rgba(255, 142, 199, 0.12),
-    0 0 48px rgba(255, 209, 102, 0.08),
-    inset 0 0 32px rgba(0, 0, 0, 0.35);
+    0 6px 0 #c85888,
+    0 10px 24px rgba(200, 80, 140, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .cell {
@@ -124,14 +130,17 @@ body {
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  border: 1px solid var(--cell-border);
-  border-radius: 3px;
-  transition: background 0.15s ease;
+  border-radius: 6px;
+  overflow: visible;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Tile types */
+/* Floor — yellow checkered candy tiles */
+
 .tile-floor {
-  background: var(--cell-light);
+  background: var(--floor-light);
+  border: 1px solid var(--floor-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .tile-floor:nth-child(20n + 1),
@@ -144,177 +153,305 @@ body {
 .tile-floor:nth-child(20n + 16),
 .tile-floor:nth-child(20n + 18),
 .tile-floor:nth-child(20n + 20) {
-  background: var(--cell-dark);
+  background: var(--floor-dark);
 }
+
+/* Walls — pink rock candy with sparkle */
 
 .tile-wall {
-  border-radius: 4px;
-  border: 2px solid #b82d65;
-  background-color: #e85a9a;
-  background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, transparent 45%),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0.12) 0,
-      rgba(255, 255, 255, 0.12) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    linear-gradient(160deg, #ffc0dd 0%, #ff6ba8 45%, #c93d72 100%);
+  border: 2px solid #d04080;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.8) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+    linear-gradient(145deg, #ffb8d9 0%, #ff6ba8 40%, #c77dff 100%);
   box-shadow:
-    inset 0 0 8px rgba(255, 255, 255, 0.35),
-    inset -2px -3px 6px rgba(120, 20, 60, 0.25),
-    0 1px 0 rgba(255, 255, 255, 0.2);
+    inset 0 2px 4px rgba(255, 255, 255, 0.55),
+    inset 0 -3px 6px rgba(160, 40, 100, 0.25),
+    0 2px 0 #b83870;
 }
+
+/* River — glossy swirling chocolate */
 
 .tile-river {
-  border-color: #4a2c14;
-  background-color: #5d3a1a;
+  border: 2px solid var(--chocolate-dark);
+  background-color: var(--chocolate-mid);
   background-image:
-    radial-gradient(circle at 25% 30%, #8b5a2b 0%, transparent 42%),
-    radial-gradient(circle at 75% 65%, #5d3a1a 0%, transparent 38%),
-    radial-gradient(circle at 45% 80%, #a06830 0%, transparent 35%),
-    radial-gradient(circle at 60% 25%, #3d2410 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, #6d4520, #3d2410);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.35);
+    radial-gradient(ellipse 80% 60% at 30% 25%, var(--chocolate-gloss) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 75% 70%, #4a2810 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #7a4820, var(--chocolate-dark));
+  box-shadow:
+    inset 0 2px 6px rgba(255, 200, 140, 0.2),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.35);
 }
+
+.tile-river::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 15%;
+  width: 18%;
+  height: 28%;
+  background: var(--chocolate-mid);
+  border-radius: 0 0 50% 50%;
+  box-shadow:
+    140% 0 0 var(--chocolate-mid),
+    70% -20% 0 2px var(--chocolate-gloss);
+  opacity: 0.85;
+}
+
+/* Bridge — crystalline candy (Melt Rune active) */
 
 .tile-bridge {
-  background: linear-gradient(145deg, #ffd6a5, #ffb347);
-  border-color: #e69500;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 2px solid #5ab0e8;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, transparent 50%),
+    linear-gradient(160deg, var(--bridge-light), var(--bridge-blue));
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(60, 140, 200, 0.3),
+    0 0 10px rgba(126, 200, 255, 0.45);
 }
 
-.tile-guard {
-  background: var(--cell-light);
-}
-
+.tile-guard,
 .tile-guard-tiny {
-  background: var(--cell-light);
+  background: var(--floor-light);
+  border: 1px solid var(--floor-border);
 }
+
+/* Exit — sparkling star candy pile */
 
 .tile-exit {
-  background: linear-gradient(145deg, #fff3b0, #ffd166);
-  border-color: #e6a800;
-  box-shadow: 0 0 10px rgba(255, 209, 102, 0.45);
+  border: 2px solid #f0b030;
+  background: radial-gradient(circle at 50% 50%, #fffce8, #ffe680);
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.9),
+    0 0 22px rgba(255, 209, 102, 0.65);
+  animation: exit-sparkle 2s ease-in-out infinite;
+}
+
+@keyframes exit-sparkle {
+  0%,
+  100% {
+    box-shadow:
+      0 0 14px rgba(255, 255, 255, 0.9),
+      0 0 22px rgba(255, 209, 102, 0.65);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 1),
+      0 0 32px rgba(255, 209, 102, 0.85);
+  }
 }
 
 .has-player {
-  background: var(--cell-light);
+  background: var(--floor-light);
+  border: 1px solid var(--floor-border);
 }
 
-/* Entities on tiles */
+/* Entities */
+
 .entity {
-  line-height: 1;
+  position: relative;
   pointer-events: none;
   user-select: none;
 }
 
-/* Marshmallow player */
+/* Marshmallow player — soft square blob with blue feet */
+
 .entity.player {
-  position: relative;
-  width: 72%;
-  height: 72%;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #ffeffd 0%, #ffffff 55%, #f8e8f4 100%);
+  width: 74%;
+  height: 74%;
+  border-radius: 28%;
+  background: linear-gradient(160deg, #ffffff 0%, var(--marshmallow-shadow) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
   box-shadow:
-    inset -3px -4px 8px rgba(200, 160, 190, 0.25),
-    inset 2px 2px 6px rgba(255, 255, 255, 0.9),
-    0 3px 8px rgba(80, 40, 60, 0.2);
-  animation: player-bounce 1.2s ease-in-out infinite;
+    inset 0 3px 6px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 8px rgba(200, 180, 210, 0.35),
+    0 4px 8px rgba(100, 60, 120, 0.2);
+  animation: player-bounce 1.1s ease-in-out infinite;
 }
 
 .entity.player::before {
   content: "";
   position: absolute;
-  top: 34%;
-  left: 28%;
+  top: 30%;
+  left: 27%;
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #4a3040;
-  box-shadow: 14px 0 0 #4a3040;
+  background: #2a2030;
+  box-shadow: 13px 0 0 #2a2030;
 }
 
 .entity.player::after {
   content: "";
   position: absolute;
-  bottom: 26%;
-  left: 50%;
-  width: 14px;
-  height: 7px;
-  border: 2px solid transparent;
-  border-bottom: 2px solid #4a3040;
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
-/* Lollipop guard */
-.entity.guard {
-  position: relative;
-  width: 78%;
-  height: 78%;
-  border-radius: 50%;
-  background: conic-gradient(
-    from 20deg,
-    #ff2d55,
-    #ff8ec7,
-    #ffd166,
-    #ff6b9d,
-    #e84a8a,
-    #ff2d55
-  );
-  box-shadow:
-    inset 0 0 0 3px rgba(255, 255, 255, 0.35),
-    0 3px 8px rgba(80, 20, 50, 0.25);
-}
-
-.entity.guard::before {
-  content: "";
-  position: absolute;
-  top: 32%;
-  left: 26%;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #3d2030;
-  box-shadow: 16px 0 0 #3d2030;
-  transform: rotate(-8deg);
-}
-
-.entity.guard::after {
-  content: "";
-  position: absolute;
-  bottom: 28%;
+  bottom: 18%;
   left: 50%;
   width: 12px;
   height: 6px;
   border: 2px solid transparent;
-  border-top: 2px solid #3d2030;
+  border-bottom: 2px solid #2a2030;
   border-radius: 50%;
   transform: translateX(-50%);
+  box-shadow:
+    -9px 10px 0 -2px #8ec8ff,
+    9px 10px 0 -2px #8ec8ff;
 }
 
-.entity.guard-tiny {
-  font-size: clamp(0.7rem, 2.2vmin, 1rem);
-  opacity: 0.85;
+/* Chocolate surface shimmer on river tiles */
+
+.entity-chocolate {
+  position: absolute;
+  inset: 12%;
+  border-radius: 40%;
+  background: radial-gradient(ellipse at 40% 30%, rgba(255, 220, 160, 0.35), transparent 60%);
+  opacity: 0.7;
 }
 
-.entity.bridge {
-  width: 70%;
-  height: 28%;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #c47a4a, #8b5a2b);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+/* Candy bridge crystal overlay */
+
+.entity-bridge {
+  width: 82%;
+  height: 36%;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 40%),
+    linear-gradient(90deg, #a8dcff, #6ec0f0);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.entity.exit {
-  font-size: clamp(0.9rem, 3vmin, 1.4rem);
+/* Lollipop guard — red swirl on stick, grumpy face */
+
+.entity-lollipop {
+  width: 56%;
+  height: 56%;
+  margin-top: -14%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 25deg,
+    #ff2244,
+    #ff7799,
+    #ffcc44,
+    #ff4466,
+    #ff2244
+  );
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.25),
+    0 3px 6px rgba(120, 20, 50, 0.22);
 }
 
-.entity.river {
-  font-size: clamp(0.75rem, 2.4vmin, 1.1rem);
-  opacity: 0.85;
+.entity-lollipop::before {
+  content: "";
+  position: absolute;
+  top: 34%;
+  left: 30%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2a1020;
+  box-shadow:
+    11px 0 0 #2a1020,
+    -2px -5px 0 -1.5px #2a1020,
+    9px -5px 0 -1.5px #2a1020,
+    5px 9px 0 -3px #2a1020;
+}
+
+.entity-lollipop::after {
+  content: "";
+  position: absolute;
+  top: 92%;
+  left: 50%;
+  width: 4px;
+  height: 48%;
+  background: linear-gradient(180deg, #f4f4fc, #d4d4e4);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  z-index: -1;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Tiny candy — shrunk guard (Tiny Rune active) */
+
+.entity-tiny-candy {
+  width: 38%;
+  height: 38%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffb8d0, #ff5588);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 4px rgba(100, 40, 60, 0.2);
+  opacity: 0.9;
+}
+
+.entity-tiny-candy::before {
+  content: "";
+  position: absolute;
+  top: 28%;
+  left: 26%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #3a2030;
+  box-shadow: 7px 0 0 #3a2030;
+}
+
+/* Exit stars pile */
+
+.entity-exit-stars {
+  width: 80%;
+  height: 80%;
+}
+
+.entity-exit-stars::before,
+.entity-exit-stars::after {
+  content: "★";
+  position: absolute;
+  color: #ff8ec7;
+  font-size: clamp(0.55rem, 2vmin, 0.85rem);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+.entity-exit-stars::before {
+  top: 20%;
+  left: 18%;
+  color: #7ec8ff;
+  font-size: clamp(0.65rem, 2.4vmin, 1rem);
+}
+
+.entity-exit-stars::after {
+  bottom: 15%;
+  right: 12%;
+  color: #ffd166;
+}
+
+.cell.tile-exit .entity-exit-stars {
+  background:
+    radial-gradient(circle at 50% 55%, #fff 0 18%, transparent 19%),
+    conic-gradient(from 0deg, #ff8ec7, #7ec8ff, #ffd166, #ff9ec4, #ff8ec7);
+  -webkit-mask: none;
+  border-radius: 50%;
+  width: 65%;
+  height: 65%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.cell.tile-exit .entity-exit-stars::before {
+  content: "★";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(0.9rem, 3vmin, 1.3rem);
+  color: #fff;
+  text-shadow: 0 0 8px #ffd166;
+}
+
+.cell.tile-exit .entity-exit-stars::after {
+  display: none;
 }
 
 @keyframes player-bounce {
@@ -324,138 +461,198 @@ body {
   }
 
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
   }
 }
 
-/* Magic runes panel */
+/* Runes panel — light pink Candy Kingdom UI */
 
 .runes-section {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  padding: 1rem 1.1rem 1.2rem;
+  background: var(--panel-pink);
+  border: 3px solid #f0b0d0;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 0 #e898b8,
+    inset 0 2px 8px rgba(255, 255, 255, 0.6);
 }
 
 .runes-heading {
+  text-align: center;
   font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--candy-purple);
 }
 
 .runes-hint {
-  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  font-style: italic;
 }
 
 .runes-panel {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
   width: 100%;
   max-width: var(--board-size);
+  margin-top: 0.75rem;
 }
+
+/* Stone rune buttons */
 
 .rune-slot {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  padding: 1.1rem 0.75rem;
-  background: var(--bg-mid);
-  border: 2px dashed var(--board-frame);
-  border-radius: 10px;
-  min-height: 130px;
+  gap: 0.35rem;
+  padding: 0.9rem 0.6rem 0.75rem;
+  min-height: 128px;
   cursor: pointer;
   font: inherit;
-  color: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  color: #e8e8f0;
+  border: none;
+  border-radius: 14px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-.rune-slot:hover {
-  background: color-mix(in srgb, var(--bg-mid) 85%, white);
-}
-
-.rune-slot:focus-visible {
-  outline: 2px solid var(--glow-gold);
-  outline-offset: 2px;
-}
-
-.rune-slot[data-rune="melt"] {
-  border-color: color-mix(in srgb, var(--rune-matter-glow) 50%, var(--board-frame));
-}
-
-.rune-slot[data-rune="melt"].active,
-.rune-slot[data-rune="melt"].rune-glow {
-  border-style: solid;
-  border-color: var(--rune-matter-glow);
-  background: color-mix(in srgb, var(--rune-matter-glow) 18%, var(--bg-mid));
+.rune-stone {
+  background: linear-gradient(165deg, var(--stone-light) 0%, var(--stone-dark) 55%, #3a3a48 100%);
+  border: 3px solid #2e2e38;
   box-shadow:
-    0 0 16px color-mix(in srgb, var(--rune-matter-glow) 35%, transparent),
-    0 0 0 3px color-mix(in srgb, var(--rune-matter-glow) 25%, transparent);
+    inset 0 2px 4px var(--stone-highlight),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.35),
+    0 5px 0 #2a2a34,
+    0 7px 14px rgba(60, 40, 80, 0.25);
 }
 
-.rune-slot[data-rune="tiny"] {
-  border-color: color-mix(in srgb, var(--rune-behavior-glow) 50%, var(--board-frame));
+.rune-stone:hover {
+  transform: translateY(-2px);
 }
 
-.rune-slot[data-rune="tiny"].active,
-.rune-slot[data-rune="tiny"].rune-glow {
-  border-style: solid;
-  border-color: var(--rune-behavior-glow);
-  background: color-mix(in srgb, var(--rune-behavior-glow) 18%, var(--bg-mid));
+.rune-stone:active {
+  transform: translateY(2px);
   box-shadow:
-    0 0 16px color-mix(in srgb, var(--rune-behavior-glow) 35%, transparent),
-    0 0 0 3px color-mix(in srgb, var(--rune-behavior-glow) 25%, transparent);
+    inset 0 2px 4px var(--stone-highlight),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+    0 2px 0 #2a2a34;
 }
 
-.rune-glyph {
-  font-size: 2rem;
-  line-height: 1;
+.rune-stone.active,
+.rune-stone.rune-glow {
+  box-shadow:
+    inset 0 2px 4px var(--stone-highlight),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.35),
+    0 5px 0 #2a2a34,
+    0 0 0 4px rgba(255, 255, 255, 0.75),
+    0 0 20px 6px rgba(255, 255, 255, 0.55),
+    0 0 36px 10px rgba(255, 255, 255, 0.3);
 }
 
-.rune-slot[data-rune="melt"] .rune-glyph {
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--rune-matter-glow) 60%, transparent));
+.rune-stone:focus-visible {
+  outline: 3px solid var(--candy-purple);
+  outline-offset: 3px;
 }
 
-.rune-slot[data-rune="tiny"] .rune-glyph {
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--rune-behavior-glow) 60%, transparent));
+/* Rune icons carved in stone */
+
+.rune-icon {
+  display: block;
+  width: 2.6rem;
+  height: 2.6rem;
+  position: relative;
+}
+
+/* Melt — matchstick with flame */
+
+.rune-icon--melt::before {
+  content: "";
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  width: 6px;
+  height: 55%;
+  background: linear-gradient(90deg, #8b5a2b, #c47a4a);
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(-18deg);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.rune-icon--melt::after {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: 58%;
+  width: 14px;
+  height: 18px;
+  background: radial-gradient(ellipse at 50% 80%, #ff8800, #ffdd44 60%, transparent 70%);
+  border-radius: 50% 50% 40% 40%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 4px rgba(255, 180, 50, 0.8));
+}
+
+/* Tiny — wrapped candy icon */
+
+.rune-icon--tiny::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 14px;
+  background: linear-gradient(90deg, #ff8ec7, #ff5588, #ff8ec7);
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.rune-icon--tiny::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 8px;
+  background: linear-gradient(90deg, #c8e8ff, #ffffff, #c8e8ff);
+  border-radius: 2px;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  z-index: -1;
+  opacity: 0.9;
 }
 
 .rune-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   text-align: center;
-  color: var(--text-primary);
+  color: #f0f0f8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .rune-effect {
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  color: #c8c8d8;
   text-align: center;
-  line-height: 1.3;
-}
-
-.rune-slot[data-rune="melt"] .rune-effect {
-  color: color-mix(in srgb, var(--rune-matter-glow) 70%, var(--text-muted));
-}
-
-.rune-slot[data-rune="tiny"] .rune-effect {
-  color: color-mix(in srgb, var(--rune-behavior-glow) 70%, var(--text-muted));
+  line-height: 1.25;
 }
 
 .rune-status {
-  margin-top: 0.15rem;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: #a8a8b8;
+}
+
+.rune-stone.active .rune-status,
+.rune-stone.rune-glow .rune-status {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 /* Victory overlay */
@@ -467,7 +664,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgba(10, 6, 16, 0.82);
+  background: rgba(248, 212, 240, 0.75);
   backdrop-filter: blur(6px);
   opacity: 0;
   visibility: hidden;
@@ -486,27 +683,26 @@ body {
   text-align: center;
   max-width: 22rem;
   padding: 2rem 1.75rem;
-  border-radius: 16px;
-  border: 2px solid var(--glow-gold);
-  background: linear-gradient(160deg, #3d1f4a, var(--bg-mid));
+  border-radius: 20px;
+  border: 4px solid var(--candy-pink);
+  background: linear-gradient(160deg, #fff8fc, var(--panel-pink));
   box-shadow:
-    0 0 40px rgba(255, 209, 102, 0.25),
-    0 0 80px rgba(255, 142, 199, 0.15);
+    0 6px 0 #e878a8,
+    0 0 40px rgba(255, 142, 199, 0.4);
 }
 
 .win-emoji {
   font-size: 3rem;
   line-height: 1;
   margin-bottom: 0.75rem;
+  text-shadow: 0 0 16px rgba(255, 209, 102, 0.8);
 }
 
 .win-title {
   font-size: clamp(1.75rem, 6vw, 2.5rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--glow-gold), var(--glow-pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  color: var(--candy-purple);
+  text-shadow: 0 2px 0 #fff;
 }
 
 .win-message {

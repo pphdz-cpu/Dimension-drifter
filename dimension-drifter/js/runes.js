@@ -5,7 +5,7 @@ export const RUNES = {
   TINY: "tiny",
 };
 
-/** Maps tile type IDs to default and rune-transformed CSS classes. */
+/** Maps tile types to default and rune-transformed CSS classes. */
 export const TILE_VISUAL_CLASS = {
   [TILE.FLOOR]: { default: "tile-floor" },
   [TILE.WALL]: { default: "tile-wall" },
@@ -15,7 +15,6 @@ export const TILE_VISUAL_CLASS = {
 };
 
 /**
- * Returns the CSS class for a cell, swapping visuals when a rune is active.
  * @param {number} tile
  * @param {string | null} activeRune
  */
@@ -33,7 +32,32 @@ export function getTileClass(tile, activeRune) {
 }
 
 /**
- * Whether the player can walk onto this tile given the active rune.
+ * @param {number} tile
+ * @param {string | null} activeRune
+ */
+export function getTileVisualState(tile, activeRune) {
+  if (tile === TILE.RIVER && activeRune === RUNES.MELT) {
+    return "bridge";
+  }
+  if (tile === TILE.RIVER) {
+    return "river";
+  }
+  if (tile === TILE.GUARD && activeRune === RUNES.TINY) {
+    return "tiny-guard";
+  }
+  if (tile === TILE.GUARD) {
+    return "guard";
+  }
+  if (tile === TILE.EXIT) {
+    return "exit";
+  }
+  if (tile === TILE.WALL) {
+    return "wall";
+  }
+  return "floor";
+}
+
+/**
  * @param {number} tile
  * @param {string | null} activeRune
  */
@@ -56,18 +80,22 @@ export function isTilePassable(tile, activeRune = null) {
  */
 export function getTileEntity(tile, activeRune) {
   if (tile === TILE.RIVER && activeRune === RUNES.MELT) {
-    return { className: "entity bridge", label: "Candy bridge" };
+    return { className: "entity entity-bridge", label: "Candy bridge" };
+  }
+
+  if (tile === TILE.RIVER) {
+    return { className: "entity entity-chocolate", hidden: true };
   }
 
   if (tile === TILE.GUARD) {
     if (activeRune === RUNES.TINY) {
-      return { className: "entity guard-tiny", text: "🍬", hidden: true };
+      return { className: "entity entity-tiny-candy", label: "Tiny candy" };
     }
-    return { className: "entity guard", label: "Lollipop guard" };
+    return { className: "entity entity-lollipop", label: "Lollipop guard" };
   }
 
   if (tile === TILE.EXIT) {
-    return { className: "entity exit", text: "⭐", label: "Star candy exit" };
+    return { className: "entity entity-exit-stars", label: "Star candy exit" };
   }
 
   return null;

@@ -1,4 +1,4 @@
-import { getTileClass, getTileEntity } from "./runes.js";
+import { getTileClass, getTileEntity, getTileVisualState } from "./runes.js";
 
 export { TILE } from "./tiles.js";
 
@@ -93,6 +93,7 @@ export function renderBoard(
       cell.dataset.row = String(row);
       cell.dataset.col = String(col);
       cell.dataset.tile = String(tile);
+      cell.dataset.visual = getTileVisualState(tile, activeRune);
 
       if (isPlayerHere) {
         cell.classList.add("has-player");

@@ -11,7 +11,7 @@
     <header class="game-header">
       <h1 class="game-title">Dimension Drifter</h1>
       <p class="game-tagline">The Magic Labyrinth</p>
-      <p class="game-subtitle">Guide your marshmallow blob through the candy maze. Toggle reality with the runes.</p>
+      <p class="game-subtitle">Guide your marshmallow blob through the Candy Kingdom maze.</p>
       <p class="level-label" id="level-label">Level 1 of 3</p>
     </header>
 
@@ -21,30 +21,30 @@
 
     <section class="runes-section" aria-label="Magic runes">
       <h2 class="runes-heading">Magic Runes</h2>
-      <p class="runes-hint">Toggle reality to solve the labyrinth.</p>
+      <p class="runes-hint">Activate a rune to transform the labyrinth.</p>
       <div class="runes-panel">
         <button
           type="button"
-          class="rune-slot"
+          class="rune-slot rune-stone"
           id="rune-melt"
           data-rune="melt"
           aria-pressed="false"
           aria-label="Melt Rune — turn chocolate river into a candy bridge"
         >
-          <span class="rune-glyph" aria-hidden="true">🍫</span>
+          <span class="rune-icon rune-icon--melt" aria-hidden="true"></span>
           <span class="rune-label">Melt Rune</span>
           <span class="rune-effect">River → Candy Bridge</span>
           <span class="rune-status">Inactive</span>
         </button>
         <button
           type="button"
-          class="rune-slot"
+          class="rune-slot rune-stone"
           id="rune-tiny"
           data-rune="tiny"
           aria-pressed="false"
           aria-label="Tiny Rune — shrink lollipop guards into passable candies"
         >
-          <span class="rune-glyph" aria-hidden="true">🍭</span>
+          <span class="rune-icon rune-icon--tiny" aria-hidden="true"></span>
           <span class="rune-label">Tiny Rune</span>
           <span class="rune-effect">Guards → Tiny candies</span>
           <span class="rune-status">Inactive</span>
