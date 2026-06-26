@@ -12,6 +12,7 @@
       <h1 class="game-title">Dimension Drifter</h1>
       <p class="game-tagline">The Magic Labyrinth</p>
       <p class="game-subtitle">Guide your marshmallow blob through the candy maze. Toggle reality with the runes.</p>
+      <p class="level-label" id="level-label">Level 1 of 3</p>
     </header>
 
     <section class="board-section" aria-label="Game board">
@@ -51,6 +52,15 @@
       </div>
     </section>
   </main>
+
+  <div id="win-overlay" class="win-overlay" aria-hidden="true">
+    <div class="win-card">
+      <p class="win-emoji" aria-hidden="true">⭐</p>
+      <h2 class="win-title">You Win!</h2>
+      <p class="win-message">You conquered all three candy labyrinths!</p>
+    </div>
+  </div>
+
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

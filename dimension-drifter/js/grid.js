@@ -3,27 +3,65 @@ import { getTileClass, getTileEntity } from "./runes.js";
 export { TILE } from "./tiles.js";
 
 /**
- * Level 1 — three walled rooms with strict choke points.
- * Player starts at (1, 1), exit at (8, 8).
- *
- * Room 1 (rows 1–3): start area — only exit south through (4, 4) river.
- * Room 2 (rows 5–6): middle chamber — only exit south through (7, 5) guard.
- * Room 3 (row 8): exit chamber — star candies at (8, 8).
- *
- * Reaching the exit requires stepping on both tile 2 and tile 3.
+ * Level 1 — three rooms; river at (4, 4), guard at (7, 5). Start (1, 1), exit (8, 8).
  */
-export const LEVEL_1 = [
+const level1 = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 0, 0, 1, 1, 1, 1], // Room 1
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
   [1, 0, 1, 0, 0, 0, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 2, 1, 1, 1, 1, 1], // Wall — sole gap: river (4, 4)
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1], // Room 2
+  [1, 1, 1, 1, 2, 1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-  [1, 1, 1, 1, 1, 3, 1, 1, 1, 1], // Wall — sole gap: guard (7, 5)
-  [1, 0, 0, 0, 0, 0, 0, 0, 4, 1], // Room 3 — exit (8, 8)
+  [1, 1, 1, 1, 1, 3, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 4, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
+
+/**
+ * Level 2 — winding rooms; river at (4, 5), guard at (7, 4). Start (1, 1), exit (8, 8).
+ */
+const level2 = [
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+  [1, 0, 1, 0, 0, 1, 0, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+  [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 1, 0, 1, 3, 1, 0, 1, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+  [1, 1, 0, 0, 0, 0, 0, 0, 4, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
+
+/**
+ * Level 3 — dual choke points; rivers at (3, 6) and (5, 3), guard at (7, 6).
+ * Start (1, 1), exit (8, 8).
+ */
+const level3 = [
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+  [1, 0, 1, 0, 0, 0, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 2, 1, 1, 1],
+  [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+  [1, 0, 0, 2, 0, 0, 0, 0, 0, 1],
+  [1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 3, 1, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 0, 4, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
+
+export const levels = [level1, level2, level3];
+
+/** Starting coordinates for the marshmallow on each level. */
+export const levelStarts = [
+  { row: 1, col: 1 },
+  { row: 1, col: 1 },
+  { row: 1, col: 1 },
+];
+
+/** @deprecated Use levels[0] */
+export const LEVEL_1 = level1;
 
 /**
  * Renders a 2D map array into the board container.

@@ -27,8 +27,8 @@ export function isPassable(tile, activeRune = null) {
  * @param {number} dRow
  * @param {number} dCol
  */
-export function tryMovePlayer(gameState, boardElement, dRow, dCol) {
-  if (gameState.won) {
+export function tryMovePlayer(gameState, boardElement, dRow, dCol, onLevelComplete) {
+  if (gameState.gameComplete) {
     return;
   }
 
@@ -56,8 +56,7 @@ export function tryMovePlayer(gameState, boardElement, dRow, dCol) {
   renderBoard(boardElement, level, gameState.player, gameState.activeRune);
 
   if (targetTile === TILE.EXIT) {
-    gameState.won = true;
-    alert("You reached the star candies! You win!");
+    onLevelComplete();
   }
 }
 
@@ -65,7 +64,7 @@ export function tryMovePlayer(gameState, boardElement, dRow, dCol) {
  * @param {import("./main.js").GameState} gameState
  * @param {HTMLElement} boardElement
  */
-export function setupPlayerControls(gameState, boardElement) {
+export function setupPlayerControls(gameState, boardElement, onLevelComplete) {
   document.addEventListener("keydown", (event) => {
     const direction = KEY_DIRECTIONS[event.code];
     if (!direction) {
@@ -77,7 +76,8 @@ export function setupPlayerControls(gameState, boardElement) {
       gameState,
       boardElement,
       direction.dRow,
-      direction.dCol
+      direction.dCol,
+      onLevelComplete
     );
   });
 }
