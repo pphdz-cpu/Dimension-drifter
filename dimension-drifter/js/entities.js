@@ -1,4 +1,5 @@
-import { TILE, renderBoard } from "./grid.js";
+import { TILE } from "./tiles.js";
+import { renderBoard } from "./grid.js";
 import { isTilePassable } from "./runes.js";
 
 const KEY_DIRECTIONS = {

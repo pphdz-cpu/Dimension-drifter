@@ -1,13 +1,6 @@
 import { getTileClass, getTileEntity } from "./runes.js";
 
-/** Tile types for Dimension Drifter: The Magic Labyrinth */
-export const TILE = {
-  FLOOR: 0,
-  WALL: 1,
-  RIVER: 2,
-  GUARD: 3,
-  EXIT: 4,
-};
+export { TILE } from "./tiles.js";
 
 /**
  * Level 1 — three walled rooms with strict choke points.

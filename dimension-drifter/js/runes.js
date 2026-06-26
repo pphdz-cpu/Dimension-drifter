@@ -1,3 +1,5 @@
+import { TILE } from "./tiles.js";
+
 export const RUNES = {
   MELT: "melt",
   TINY: "tiny",
@@ -5,16 +7,15 @@ export const RUNES = {
 
 /** Maps tile type IDs to default and rune-transformed CSS classes. */
 export const TILE_VISUAL_CLASS = {
-  0: { default: "tile-floor" },
-  1: { default: "tile-wall" },
-  2: { default: "tile-river", [RUNES.MELT]: "tile-bridge" },
-  3: { default: "tile-guard", [RUNES.TINY]: "tile-guard-tiny" },
-  4: { default: "tile-exit" },
+  [TILE.FLOOR]: { default: "tile-floor" },
+  [TILE.WALL]: { default: "tile-wall" },
+  [TILE.RIVER]: { default: "tile-river", [RUNES.MELT]: "tile-bridge" },
+  [TILE.GUARD]: { default: "tile-guard", [RUNES.TINY]: "tile-guard-tiny" },
+  [TILE.EXIT]: { default: "tile-exit" },
 };
 
 /**
  * Returns the CSS class for a cell, swapping visuals when a rune is active.
- * e.g. tile-river → tile-bridge when Melt Rune is active.
  * @param {number} tile
  * @param {string | null} activeRune
  */
@@ -52,7 +53,6 @@ export function isTilePassable(tile, activeRune = null) {
 /**
  * @param {number} tile
  * @param {string | null} activeRune
- * @returns {{ className: string, text?: string, label?: string, hidden?: boolean } | null}
  */
 export function getTileEntity(tile, activeRune) {
   if (tile === TILE.RIVER && activeRune === RUNES.MELT) {
@@ -74,7 +74,6 @@ export function getTileEntity(tile, activeRune) {
 }
 
 /**
- * Highlights the active rune button with glow/outline styling.
  * @param {string | null} activeRune
  */
 export function updateRuneUI(activeRune) {
@@ -99,7 +98,6 @@ export function updateRuneUI(activeRune) {
 /**
  * @param {import("./main.js").GameState} gameState
  * @param {string} rune
- * @returns {string | null}
  */
 export function setActiveRune(gameState, rune) {
   gameState.activeRune = gameState.activeRune === rune ? null : rune;
