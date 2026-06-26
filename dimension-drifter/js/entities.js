@@ -1,5 +1,5 @@
 import { TILE, renderBoard } from "./grid.js";
-import { RUNES } from "./runes.js";
+import { isTilePassable } from "./runes.js";
 
 const KEY_DIRECTIONS = {
   ArrowUp: { dRow: -1, dCol: 0 },
@@ -17,16 +17,7 @@ const KEY_DIRECTIONS = {
  * @param {string | null} activeRune
  */
 export function isPassable(tile, activeRune = null) {
-  if (tile === TILE.FLOOR || tile === TILE.EXIT) {
-    return true;
-  }
-  if (tile === TILE.RIVER && activeRune === RUNES.MELT) {
-    return true;
-  }
-  if (tile === TILE.GUARD && activeRune === RUNES.TINY) {
-    return true;
-  }
-  return false;
+  return isTilePassable(tile, activeRune);
 }
 
 /**
