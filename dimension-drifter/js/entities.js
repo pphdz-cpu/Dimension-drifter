@@ -1,4 +1,5 @@
-import { TILE, isPassable, renderBoard } from "./grid.js";
+import { TILE, renderBoard } from "./grid.js";
+import { RUNES } from "./runes.js";
 
 const KEY_DIRECTIONS = {
   ArrowUp: { dRow: -1, dCol: 0 },
@@ -10,6 +11,23 @@ const KEY_DIRECTIONS = {
   KeyA: { dRow: 0, dCol: -1 },
   KeyD: { dRow: 0, dCol: 1 },
 };
+
+/**
+ * @param {number} tile
+ * @param {string | null} activeRune
+ */
+export function isPassable(tile, activeRune = null) {
+  if (tile === TILE.FLOOR || tile === TILE.EXIT) {
+    return true;
+  }
+  if (tile === TILE.RIVER && activeRune === RUNES.MELT) {
+    return true;
+  }
+  if (tile === TILE.GUARD && activeRune === RUNES.TINY) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * @param {import("./main.js").GameState} gameState
